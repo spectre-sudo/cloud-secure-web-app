@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>User Dashboard</h2>
+
+<h3>Create Task</h3>
+
+<form method="POST">
+
+    {{ form.hidden_tag() }}
+
+    {{ form.title.label }}
+    {{ form.title() }}
+
+    {{ form.description.label }}
+    {{ form.description() }}
+
+    {{ form.submit() }}
+
+</form>
+
+<hr>
+
+<h3>Your Tasks</h3>
+
+{% for task in tasks %}
+
+   <h4>{{ task.title }}</h4>
+
+<p>{{ task.description }}</p>
+
+<a href="/edit_task/{{ task.id }}">Edit</a>
+
+|
+
+<a href="/delete_task/{{ task.id }}">Delete</a>
+
+    <hr>
+
+{% endfor %}
+
+{% endblock %}
